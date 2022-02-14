@@ -1,26 +1,38 @@
-import React, { Components } from "react";
+import React, { Component } from "react";
 
-class GeneralInfo extends Components{
-    render() {
-        return (
-            <div>
-                <form>
-                    <label htmlFor="nameInput">Name:</label>
-                    <input type="text" id="nameInput"/>
+class GeneralInfo extends Component {
 
-                    <label htmlFor="emailInput">Email:</label>
-                    <input type="text" id="emailInput"/>
+  render() {
+    return (
+      <div>
+          <label htmlFor="nameInput">Name:</label>
+          <input
+            id="nameInput"
+            name="name"
+            value={this.props.name}
+            onChange={this.props.handleChange}
+          />
 
-                    <label htmlFor="phoneInput">Phone number:</label>
-                    <input type="text" id="phoneInput"/>
+          <label htmlFor="emailInput">Email:</label>
+          <input
+            id="emailInput"
+            name="email"
+            type="email"
+            value={this.props.email}
+            onChange={this.props.handleChange}
+          />
 
-                    <button type="submit">
-                    Add information
-                    </button>
-                </form>
-            </div>
-        );
-    }
+          <label htmlFor="phoneInput">Phone number:</label>
+          <input
+            id="phoneInput"
+            name="phone"
+            type="tel"
+            value={this.props.phone}
+            onChange={this.props.handleChange}
+          />
+      </div>
+    );
+  }
 }
 
 export default GeneralInfo;
