@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import GeneralInfo from "./GeneralInfo";
+import EducationInfo from "./EducationInfo";
+import PracticalInfo from "./PracticalInfo";
 
 class App extends Component {
   constructor() {
@@ -7,9 +9,13 @@ class App extends Component {
 
     this.state = {
       name: "",
-      phone: "",
+      phone: "", 
       email: "",
-      submitedInput: { name: "", email: "", phone: "" },
+      schoolName: "", 
+      titleOfStudy: "", 
+      dateFrom: "",
+      dateTo: "",
+      submitedInput: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,9 +25,17 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, phone } = this.state;
+    const { name, email, phone, schoolName, titleOfStudy, dateFrom, dateTo } = this.state;
     this.setState({
-      submitedInput: { name: name, email: email, phone: phone },
+      submitedInput: {
+        name: name, 
+        email: email,
+        phone: phone,
+        schoolName: schoolName,
+        titleOfStudy: titleOfStudy,
+        dateFrom: dateFrom,
+        dateTo: dateTo,
+      },
     });
     console.log(this.state);
   }
@@ -44,12 +58,23 @@ class App extends Component {
             phone={this.state.phone}
             handleChange={this.handleChange}
           />
+          <EducationInfo
+            schoolName={this.state.schoolName}
+            titleOfStudy={this.state.titleOfStudy}
+            dateFrom={this.state.dateFrom}
+            dateTo={this.state.dateTo}
+            handleChange={this.handleChange}
+          />
           <button type="submit">Add information</button>
         </form>
         <div>
           <p>{this.state.submitedInput.name}</p>
           <p>{this.state.submitedInput.email}</p>
           <p>{this.state.submitedInput.phone}</p>
+          <p>{this.state.submitedInput.schoolName}</p>
+          <p>{this.state.submitedInput.titleOfStudy}</p>
+          <p>{this.state.submitedInput.dateFrom}</p>
+          <p>{this.state.submitedInput.dateTo}</p>
         </div>
       </div>
     );
