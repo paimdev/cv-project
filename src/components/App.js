@@ -9,12 +9,17 @@ class App extends Component {
 
     this.state = {
       name: "",
-      phone: "", 
+      phone: "",
       email: "",
-      schoolName: "", 
-      titleOfStudy: "", 
-      dateFrom: "",
-      dateTo: "",
+      schoolName: "",
+      titleOfStudy: "",
+      dateFromStudy: "",
+      dateToStudy: "",
+      companyName: "",
+      positionTitle: "",
+      mainTasks: "",
+      dateFromWork: "",
+      dateToWork: "",
       submitedInput: {},
     };
 
@@ -25,16 +30,35 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, phone, schoolName, titleOfStudy, dateFrom, dateTo } = this.state;
+    const {
+      name,
+      email,
+      phone,
+      schoolName,
+      titleOfStudy,
+      dateFromStudy,
+      dateToStudy,
+      companyName,
+      positionTitle,
+      mainTasks,
+      dateFromWork,
+      dateToWork
+    } = this.state;
+
     this.setState({
       submitedInput: {
-        name: name, 
+        name: name,
         email: email,
         phone: phone,
         schoolName: schoolName,
         titleOfStudy: titleOfStudy,
-        dateFrom: dateFrom,
-        dateTo: dateTo,
+        dateFrom: dateFromStudy,
+        dateTo: dateToStudy,
+        companyName: companyName,
+        positionTitle: positionTitle,
+        mainTasks: mainTasks,
+        dateFromWork: dateFromWork,
+        dateToWork: dateToWork,
       },
     });
     console.log(this.state);
@@ -61,8 +85,16 @@ class App extends Component {
           <EducationInfo
             schoolName={this.state.schoolName}
             titleOfStudy={this.state.titleOfStudy}
-            dateFrom={this.state.dateFrom}
-            dateTo={this.state.dateTo}
+            dateFromStudy={this.state.dateFromStudy}
+            dateToStudy={this.state.dateToStudy}
+            handleChange={this.handleChange}
+          />
+          <PracticalInfo
+            companylName={this.state.companyName}
+            positionTitle={this.state.positionTitle}
+            mainTasks={this.state.mainTasks}
+            dateFromWork={this.state.dateFromWork}
+            dateToWork={this.state.dateToWork}
             handleChange={this.handleChange}
           />
           <button type="submit">Add information</button>
@@ -73,8 +105,13 @@ class App extends Component {
           <p>{this.state.submitedInput.phone}</p>
           <p>{this.state.submitedInput.schoolName}</p>
           <p>{this.state.submitedInput.titleOfStudy}</p>
-          <p>{this.state.submitedInput.dateFrom}</p>
-          <p>{this.state.submitedInput.dateTo}</p>
+          <p>{this.state.submitedInput.dateFromStudy}</p>
+          <p>{this.state.submitedInput.dateToStudy}</p>
+          <p>{this.state.submitedInput.companyName}</p>
+          <p>{this.state.submitedInput.positionTitle}</p>
+          <p>{this.state.submitedInput.mainTasks}</p>
+          <p>{this.state.submitedInput.dateFromWork}</p>
+          <p>{this.state.submitedInput.dateToWork}</p>
         </div>
       </div>
     );
