@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import GeneralInfo from "./GeneralInfo";
 import EducationInfo from "./EducationInfo";
 import PracticalInfo from "./PracticalInfo";
+import GeneratedCV from "./GeneratedCV";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
+      filled: false,
       name: "",
       phone: "",
       email: "",
@@ -25,6 +27,7 @@ class App extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleSubmit(e) {
@@ -42,27 +45,28 @@ class App extends Component {
       positionTitle,
       mainTasks,
       dateFromWork,
-      dateToWork
+      dateToWork,
     } = this.state;
 
     this.setState({
+      filled: true,
       submitedInput: {
         name: name,
         email: email,
         phone: phone,
         schoolName: schoolName,
         titleOfStudy: titleOfStudy,
-        dateFrom: dateFromStudy,
-        dateTo: dateToStudy,
+        dateFromStudy: dateFromStudy,
+        dateToStudy: dateToStudy,
         companyName: companyName,
         positionTitle: positionTitle,
         mainTasks: mainTasks,
         dateFromWork: dateFromWork,
         dateToWork: dateToWork,
-      },
+      }
     });
     console.log(this.state);
-  }
+  };
 
   handleChange(e) {
     const value = e.target.value;
@@ -70,49 +74,77 @@ class App extends Component {
     this.setState({
       [e.target.name]: value,
     });
-  }
+  };
+
+  handleEdit() {
+    this.setState({
+      filled: false,
+    });
+  };
 
   render() {
+    const {
+      filled,
+      name,
+      email,
+      phone,
+      schoolName,
+      titleOfStudy,
+      dateFromStudy,
+      dateToStudy,
+      companyName,
+      positionTitle,
+      mainTasks,
+      dateFromWork,
+      dateToWork,
+    } = this.state;
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <GeneralInfo
-            name={this.state.name}
-            email={this.state.email}
-            phone={this.state.phone}
-            handleChange={this.handleChange}
-          />
-          <EducationInfo
-            schoolName={this.state.schoolName}
-            titleOfStudy={this.state.titleOfStudy}
-            dateFromStudy={this.state.dateFromStudy}
-            dateToStudy={this.state.dateToStudy}
-            handleChange={this.handleChange}
-          />
-          <PracticalInfo
-            companylName={this.state.companyName}
-            positionTitle={this.state.positionTitle}
-            mainTasks={this.state.mainTasks}
-            dateFromWork={this.state.dateFromWork}
-            dateToWork={this.state.dateToWork}
-            handleChange={this.handleChange}
-          />
-          <button type="submit">Add information</button>
-        </form>
-        <div>
-          <p>{this.state.submitedInput.name}</p>
-          <p>{this.state.submitedInput.email}</p>
-          <p>{this.state.submitedInput.phone}</p>
-          <p>{this.state.submitedInput.schoolName}</p>
-          <p>{this.state.submitedInput.titleOfStudy}</p>
-          <p>{this.state.submitedInput.dateFromStudy}</p>
-          <p>{this.state.submitedInput.dateToStudy}</p>
-          <p>{this.state.submitedInput.companyName}</p>
-          <p>{this.state.submitedInput.positionTitle}</p>
-          <p>{this.state.submitedInput.mainTasks}</p>
-          <p>{this.state.submitedInput.dateFromWork}</p>
-          <p>{this.state.submitedInput.dateToWork}</p>
-        </div>
+        {!filled ? (
+          <form onSubmit={this.handleSubmit}>
+            <GeneralInfo
+              name={name}
+              email={email}
+              phone={phone}
+              handleChange={this.handleChange}
+            />
+            <EducationInfo
+              schoolName={schoolName}
+              titleOfStudy={titleOfStudy}
+              dateFromStudy={dateFromStudy}
+              dateToStudy={dateToStudy}
+              handleChange={this.handleChange}
+            />
+            <PracticalInfo
+              companyName={companyName}
+              positionTitle={positionTitle}
+              mainTasks={mainTasks}
+              dateFromWork={dateFromWork}
+              dateToWork={dateToWork}
+              handleChange={this.handleChange}
+            />
+            <button type="submit">Submit information</button>
+          </form>
+        ) : (
+          <div>
+            <GeneratedCV
+              name={this.state.submitedInput.name}
+              email={this.state.submitedInput.email}
+              phone={this.state.submitedInput.phone}
+              schoolName={this.state.submitedInput.schoolName}
+              titleOfStudy={this.state.submitedInput.titleOfStudy}
+              dateFromStudy={this.state.submitedInput.dateFromStudy}
+              dateToStudy={this.state.submitedInput.dateToStudy}
+              companyName={this.state.submitedInput.companyName}
+              positionTitle={this.state.submitedInput.positionTitle}
+              mainTasks={this.state.submitedInput.mainTasks}
+              dateFromWork={this.state.submitedInput.dateFromWork}
+              dateToWork={this.state.submitedInput.dateToWork}
+            />
+            <button onClick={this.handleEdit}>Edit information</button>
+          </div>
+        )}
       </div>
     );
   }
