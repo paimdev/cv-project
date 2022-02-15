@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/theodinproject/cv-project/static/css/main.b9176841.css",
-    "main.js": "/theodinproject/cv-project/static/js/main.9591e979.js",
-    "index.html": "/theodinproject/cv-project/index.html",
-    "main.b9176841.css.map": "/theodinproject/cv-project/static/css/main.b9176841.css.map",
-    "main.9591e979.js.map": "/theodinproject/cv-project/static/js/main.9591e979.js.map"
+    "main.css": "/cv-project/static/css/main.b9176841.css",
+    "main.js": "/cv-project/static/js/main.9591e979.js",
+    "index.html": "/cv-project/index.html",
+    "main.b9176841.css.map": "/cv-project/static/css/main.b9176841.css.map",
+    "main.9591e979.js.map": "/cv-project/static/js/main.9591e979.js.map"
   },
   "entrypoints": [
     "static/css/main.b9176841.css",
