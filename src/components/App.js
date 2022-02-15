@@ -3,6 +3,7 @@ import GeneralInfo from "./GeneralInfo";
 import EducationInfo from "./EducationInfo";
 import PracticalInfo from "./PracticalInfo";
 import GeneratedCV from "./GeneratedCV";
+import "../index.css";
 
 class App extends Component {
   constructor() {
@@ -63,10 +64,10 @@ class App extends Component {
         mainTasks: mainTasks,
         dateFromWork: dateFromWork,
         dateToWork: dateToWork,
-      }
+      },
     });
     console.log(this.state);
-  };
+  }
 
   handleChange(e) {
     const value = e.target.value;
@@ -74,13 +75,13 @@ class App extends Component {
     this.setState({
       [e.target.name]: value,
     });
-  };
+  }
 
   handleEdit() {
     this.setState({
       filled: false,
     });
-  };
+  }
 
   render() {
     const {
@@ -100,15 +101,22 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="flex flex-col items-center h-max bg-slate-50">
         {!filled ? (
-          <form onSubmit={this.handleSubmit}>
+          <form
+            className="flex flex-col bg-white w-3/5 m-6 px-11 shadow-2xl rounded-2xl text-slate-700"
+            onSubmit={this.handleSubmit}
+          >
+            <h1 className="text-center text-5xl text-black py-6">
+              CV Generator
+            </h1>
             <GeneralInfo
               name={name}
               email={email}
               phone={phone}
               handleChange={this.handleChange}
             />
+            <hr />
             <EducationInfo
               schoolName={schoolName}
               titleOfStudy={titleOfStudy}
@@ -116,6 +124,7 @@ class App extends Component {
               dateToStudy={dateToStudy}
               handleChange={this.handleChange}
             />
+            <hr />
             <PracticalInfo
               companyName={companyName}
               positionTitle={positionTitle}
@@ -124,10 +133,16 @@ class App extends Component {
               dateToWork={dateToWork}
               handleChange={this.handleChange}
             />
-            <button type="submit">Submit information</button>
+            <hr />
+            <button
+              type="submit"
+              className="self-center my-3 py-3 w-1/3 border rounded-lg bg-neutral-200"
+            >
+              Submit information
+            </button>
           </form>
         ) : (
-          <div>
+          <div className="flex flex-col bg-white w-3/5 m-6 px-11 shadow-2xl rounded-2xl text-slate-700">
             <GeneratedCV
               name={this.state.submitedInput.name}
               email={this.state.submitedInput.email}
@@ -142,7 +157,12 @@ class App extends Component {
               dateFromWork={this.state.submitedInput.dateFromWork}
               dateToWork={this.state.submitedInput.dateToWork}
             />
-            <button onClick={this.handleEdit}>Edit information</button>
+            <button
+              onClick={this.handleEdit}
+              className="self-center my-3 py-3 w-1/3 border rounded-lg bg-neutral-200"
+            >
+              Edit information
+            </button>
           </div>
         )}
       </div>
